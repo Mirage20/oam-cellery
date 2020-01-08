@@ -1,0 +1,45 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  generation: 1
+  labels:
+    app: zero-cell--hello
+    mesh.cellery.io/cell: zero-cell
+    mesh.cellery.io/service: zero-cell--hello
+  name: zero-cell--hello-service
+  namespace: ""
+  ownerReferences:
+  - apiVersion: mesh.cellery.io/v1alpha1
+    blockOwnerDeletion: true
+    controller: true
+    kind: Service
+    name: zero-cell--hello
+    uid: acf90ad8-88e6-11e9-bbcb-0800271129fd
+  resourceVersion: ""
+  selfLink: /apis/networking.istio.io/v1alpha3/namespaces/default/virtualservices/zero-cell--hello-service
+  uid: ""
+spec:
+  gateways:
+  - mesh
+  hosts:
+  - zero-cell--hello-service-rev
+  http:
+  - appendHeaders:
+      knative-serving-namespace: default
+      knative-serving-revision: zero-cell--hello-service-rev
+    match:
+    - authority:
+        regex: ^zero-cell--hello-service-rev(?::\d{1,5})?$
+      sourceLabels:
+        mesh.cellery.io/cell: zero-cel
+    - authority:
+        regex: ^zero-cell--hello-service-rev\.default(?::\d{1,5})?$
+      sourceLabels:
+        mesh.cellery.io/cell: zero-cel
+    - authority:
+        regex: ^zero-cell--hello-service-rev\.default\.svc\.cluster\.local(?::\d{1,5})?$
+      sourceLabels:
+        mesh.cellery.io/cell: zero-cel
+    route:
+    - destination:
+        host: zero-cell--hello-service-rev

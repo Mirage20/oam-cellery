@@ -1,0 +1,39 @@
+sudo: false
+
+language: go
+
+go:
+- 1.12.x
+
+addons:
+  apt:
+    packages:
+    - docker-ce
+
+cache:
+  directories:
+    - $GOPATH/pkg/mod
+
+env:
+- GO111MODULE=on
+
+before_script:
+- make tools
+
+script:
+- test -z "$(make code.format-check| tee /dev/stderr)"
+- make verify-codegen
+- make build
+- make docker
+- make test
+- git diff --exit-code
+
+after_success:
+- bash <(curl -s https://codecov.io/bash)
+
+deploy:
+  provider: script
+  script: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD && make docker-push
+  on:
+    branch: master
+  skip_cleanup: true

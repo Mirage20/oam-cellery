@@ -1,0 +1,20 @@
+apiVersion: serving.knative.dev/v1alpha1
+kind: Revision
+metadata:
+  annotations:
+    autoscaling.knative.dev/minScale: "0"
+    serving.knative.dev/lastPinned: "1559712847"
+  labels:
+    serving.knative.dev/configuration: helloworld-go
+    serving.knative.dev/configurationGeneration: "3"
+    serving.knative.dev/service: helloworld-go
+  name: helloworld-go
+spec:
+  containers:
+  - env:
+    - name: TARGET
+      value: Go Sample v1
+    image: gcr.io/knative-samples/helloworld-go
+    name: ""
+    resources: {}
+  timeoutSeconds: 300

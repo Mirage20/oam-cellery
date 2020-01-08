@@ -1,0 +1,63 @@
+apiVersion: mesh.cellery.io/v1alpha1
+kind: Cell
+metadata:
+  name: pet-frontend
+  annotations:
+    mesh.cellery.io/cell-image-org: cellery-samples
+    mesh.cellery.io/cell-image-name: pet-frontend
+    mesh.cellery.io/cell-image-version: 1.0.0
+spec:
+  gatewayTemplate:
+    spec:
+      type: Envoy
+      host: pet-store.com
+      tls:
+        key: LS0tLS1CRUdJTiBQUklWQVRFIEtFWS0tLS0tCk1JSUV2QUlCQURBTkJna3Foa2lHOXcwQkFRRUZBQVNDQktZd2dnU2lBZ0VBQW9JQkFRQzVodnZ3K2Qxd203R08KRUY0SERMTk9NMTEyb2o1T0p6QWp5cVhJRS9ab0UrdVFjZWdhaEFwQXZManZ0MDNjeDU0MVUrc1Q2OXY3TGJRcgpUSDNLWTROenBUb1hFNDNidmRkS2lyQWlDaUVHVS9KK2NzSzI1ZHNCUXVRcE5oYnNWSDR5WWRXV3F0WUxnQ0RsCkVtUmJxQjZWc2s3UGNKV3ExK3Y2K0ZZa1ZUby9CK3JtQUZFWE1WNHhEVy81akZGcnllVUtESzBxc0RCdGhQWksKU0lMSmphZmJ2ZVdBaXJRTkdCT3FuVHhna2N4WmdPR0FLSHl2YllkQjVBMG9xODBPTWFTQW5CSkpVUDM0QWIzOQp1VnpmOHhzUUp5OGc3NlZpTnZYbmpCTGJUcjZXcUJnVEo1anJmSHZNU3lDZVJyZlVpMGIxcFdkUU1ZSDBickxLCmd2bmlNQ3Y3QWdNQkFBRUNnZ0VBTjdFZWhmcnJqemNkZUpEUE9QeUdBcTZHbXVzZkd1VEduYWZpVmdvd0NKUWEKUFhVRUFKbXNYanlJbzJUNkdaRk9tNkdDU3F1ZGtHdnF6cWlhaGh1VFJTN1BIa2cvYUR3M21XZkNjYVZxdm5TSwpzWXlQaU1tOUVVYmNLTWJVNE1LSVUyVnM4VnA5QUZ6SkF4cWZSNmhTN2dybGYzM0RYOUtMUXY0ekZac0Q3aEZXCmhDbW1UazN6TWFoRmdxRWxCQTgzV0pnNDVwazY4cmdpTlA3L3dLekVaSXo1TnJCNG5XNkhzZ0ZkYUVQemZDOEEKU0VsVlptcmRtODk0cUtyUk5OSTQxVmZubFZUOXJQTHZ2OU9iUlR6S0pYR0krZEU2WmE0eGhPMmJ2RWhvM3h6RQpiWkUxY2VSNE9yZW9IVHBMVnFjOTEvZjNhc0NnSU9wN3EvVXBDdXloQVFLQmdRRGQ3MzhreTkyNm9YTzRkVkNoCjhJY1JSZ05uOGowNWVjZllRQ0Jjc0FuZ2JTaUtKSlJiV0k5YWlWOGNVL1RNN054RmpKdDN4bHdobnNDNmdoekcKRWJ5YzJpS2tzNllNb2JBclFZQmhlSmV2VGk4TFRpSyt1WUE0alBic2k5ejZKUFdZQWRJL0pNTkxKVkNlSWxWOAp0YnFSRFV3akZhR1EwdkVsK2Vtais5L2VnUUtCZ1FEV0FPWk5WWkIrTzRHR0ltaGdPeXVSY1RQZUlzRk9yMDIzClVMV1dlQld3c2MxMU82U0lCVmRuTlNOdVAyeGwrZWMzSnByYkZ6VXVpRTM4VHlWVGlDdG9melNLR3dQWWhjdFQKRVNCTy8rNVJKTURYNEZ0bXBBV0VMSmdIcEFNdTFHUUd1MzR5bEp6RXd0UE1oenRveUdjcnJ2QmFScW5ndlo5ZwpKam1nYjRaRWV3S0JnSFR6S3JYU05ES1B0N0pCSjg5ZU4xNnozVUdlVmdMK21IL3RNdUNFNTM5N0pqeTlqK3dlCjI5UGl4ZHJncHdTQjRJVkoxZmNrOFJIS1hWY3JEMHlVdGlhVmtHSG9SUjBzNnUrd1laMTdkYnNzWVAvOUdiUVYKZm1yT1phUTdBNlJSYTVYQmgvQThTQ2xHTFpoWEVXTlpSRW9CanRpQ0lwUjFoQnYxK05ldjk4V0JBb0dBRXV4RApjUVVtNExLY1VtTUtmYS9kdTErYUtZTkRPcFR2dDB6d3NaeHV0cEFTVGRKM1N2dkY3YjlhSWE2RUJFUmp1SkcyClViY3NvYSsxemFDbCtVdnFJclJVemYxemlwclNEc2RONXc1a1lWSnhwdVVVeisraStUd0VPWEM4UTFET2czWGkKdzlBMlNJTzl2TEVjaExocnZ3WWFCTEdJNWZGK2ZUOEVDM2F4RmE4Q2dZQTh4RThZa25CMHNKV1hVVDJYTUNmaAo1Q0gwSmZpckhtY0Fyb0xWOGxWb3lXaTROQjE1MHU2ZDZpL09QZy9iRndIZnlpTlV3Mi9WYUxWdDU0ZW5uWEloClViNzVYZnpYcW84ako0MkVWdnBzc2RXRUxyV3ZFR3NrUHhDdTQ4M3k1UHlpS0FPUlZ5SGJ5bnc1L3RkUG5LcDkKbnh4L3NMOGlvNWwvRWdzb0ViYTNxUT09Ci0tLS0tRU5EIFBSSVZBVEUgS0VZLS0tLS0K
+        cert: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURNekNDQWh1Z0F3SUJBZ0lKQUpLSkIrN1BVR3JkTUEwR0NTcUdTSWIzRFFFQkN3VUFNREF4RmpBVUJnTlYKQkFNTURYQmxkQzF6ZEc5eVpTNWpiMjB4RmpBVUJnTlZCQW9NRFhCbGRDMXpkRzl5WlM1amIyMHdIaGNOTVRrdwpNekU0TURnMU16STRXaGNOTWpBd016RTNNRGcxTXpJNFdqQXdNUll3RkFZRFZRUUREQTF3WlhRdGMzUnZjbVV1ClkyOXRNUll3RkFZRFZRUUtEQTF3WlhRdGMzUnZjbVV1WTI5dE1JSUJJakFOQmdrcWhraUc5dzBCQVFFRkFBT0MKQVE4QU1JSUJDZ0tDQVFFQXVZYjc4UG5kY0p1eGpoQmVCd3l6VGpOZGRxSStUaWN3SThxbHlCUDJhQlBya0hIbwpHb1FLUUx5NDc3ZE4zTWVlTlZQckUrdmIreTIwSzB4OXltT0RjNlU2RnhPTjI3M1hTb3F3SWdvaEJsUHlmbkxDCnR1WGJBVUxrS1RZVzdGUitNbUhWbHFyV0M0QWc1UkprVzZnZWxiSk96M0NWcXRmcit2aFdKRlU2UHdmcTVnQlIKRnpGZU1RMXYrWXhSYThubENneXRLckF3YllUMlNraUN5WTJuMjczbGdJcTBEUmdUcXAwOFlKSE1XWURoZ0NoOApyMjJIUWVRTktLdk5EakdrZ0p3U1NWRDkrQUc5L2JsYzMvTWJFQ2N2SU8rbFlqYjE1NHdTMjA2K2xxZ1lFeWVZCjYzeDd6RXNnbmthMzFJdEc5YVZuVURHQjlHNnl5b0w1NGpBcit3SURBUUFCbzFBd1RqQWRCZ05WSFE0RUZnUVUKd2c5bjRIN0wzNEQ1VVZIb1h3NldGdVpDK2pRd0h3WURWUjBqQkJnd0ZvQVV3ZzluNEg3TDM0RDVVVkhvWHc2VwpGdVpDK2pRd0RBWURWUjBUQkFVd0F3RUIvekFOQmdrcWhraUc5dzBCQVFzRkFBT0NBUUVBSVFNZGY0c21aR2N2CmNRSm1lbFJyL0dIN2NLWi81NE9oYStzRW1OamR6UTVZZ2Q0ZWJ5QTJKam8yc0pUaGltdlJzREd3c3Jzd2FrMWQKdE1ZSTZPcWFqNXJhWnpJUE5ad0NMMWtiamRjLzc5LzVWbm9hbEkwUEhBZzlzbzVPQnRpSGRaMjdRR1NWVkNxMwpOMDQwWTd4bWl4cEQ5WGhzRmV1ODJyZ3YvTnRTYjFqRUgvK2tFTzNMdDNodU9aQVpWRUdWeHlSQ25jVUExMmdJCjVEMEtYMHBJOEJmV0NNL0czdG5KYzk1bUdXK3RXTWFlcTZZUEhWeXNXWDJBdGFGRWQrKzdIaXVhbWRub3ppQ0QKb1ZjbDExenBxRjdJeThlWGpjOGk0U3ZjVXZVN1dKYlc5OG5DcFJULy8vdk5kY2MxNm9tZlRxWHVicmRuWlUzdApJa2lXNEhBN2F3PT0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo=
+#        secret: pet-store-ingress-cert
+      oidc:
+        providerUrl: https://accounts.google.com
+        clientId: 1028740252372-6i4iiao3afdihnjudlhi2qpf2qnalppd.apps.googleusercontent.com
+        clientSecret: R785_Q6e10YkoKVtsSifj6mG
+        redirectUrl: http://pet-store.com/_auth/callback
+        baseUrl: http://pet-store.com/
+        subjectClaim: given_name
+        nonSecurePaths:
+        - "/"
+        - "/app/*"
+      http:
+      - context: /
+        definitions:
+        - path: /*
+          method: GET
+        backend: pet-store-portal
+        global: false
+  servicesTemplates:
+  - metadata:
+      name: pet-store-portal
+    spec:
+      replicas: 1
+      container:
+        image: wso2cellery/samples-pet-store-portal
+        name: portal
+        env:
+        - name: PET_STORE_CELL_URL
+          value: http://pet-backend--gateway-service/controller
+        - name: PORTAL_PORT
+          value: "80"
+        - name: BASE_PATH
+          value: "."
+        ports:
+        - name: http
+          containerPort: 80
+      servicePort: 80
+  - metadata:
+      name: debug
+    spec:
+      replicas: 1
+      container:
+        image: docker.io/mirage20/k8s-debug-tools
+      servicePort: 80
+  stsTemplate:
+    spec:
+      unsecuredPaths: ["/items"]

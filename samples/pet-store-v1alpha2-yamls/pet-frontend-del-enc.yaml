@@ -1,0 +1,64 @@
+apiVersion: mesh.cellery.io/v1alpha1
+kind: Cell
+metadata:
+  name: pet-frontend
+  annotations:
+    mesh.cellery.io/cell-image-org: cellery-samples
+    mesh.cellery.io/cell-image-name: pet-frontend
+    mesh.cellery.io/cell-image-version: 1.0.0
+spec:
+  gatewayTemplate:
+    spec:
+      type: Envoy
+      host: pet-store.com
+#      tls:
+#        key: "@encrypted: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"
+#        cert: "@base64:LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURNekNDQWh1Z0F3SUJBZ0lKQUpLSkIrN1BVR3JkTUEwR0NTcUdTSWIzRFFFQkN3VUFNREF4RmpBVUJnTlYKQkFNTURYQmxkQzF6ZEc5eVpTNWpiMjB4RmpBVUJnTlZCQW9NRFhCbGRDMXpkRzl5WlM1amIyMHdIaGNOTVRrdwpNekU0TURnMU16STRXaGNOTWpBd016RTNNRGcxTXpJNFdqQXdNUll3RkFZRFZRUUREQTF3WlhRdGMzUnZjbVV1ClkyOXRNUll3RkFZRFZRUUtEQTF3WlhRdGMzUnZjbVV1WTI5dE1JSUJJakFOQmdrcWhraUc5dzBCQVFFRkFBT0MKQVE4QU1JSUJDZ0tDQVFFQXVZYjc4UG5kY0p1eGpoQmVCd3l6VGpOZGRxSStUaWN3SThxbHlCUDJhQlBya0hIbwpHb1FLUUx5NDc3ZE4zTWVlTlZQckUrdmIreTIwSzB4OXltT0RjNlU2RnhPTjI3M1hTb3F3SWdvaEJsUHlmbkxDCnR1WGJBVUxrS1RZVzdGUitNbUhWbHFyV0M0QWc1UkprVzZnZWxiSk96M0NWcXRmcit2aFdKRlU2UHdmcTVnQlIKRnpGZU1RMXYrWXhSYThubENneXRLckF3YllUMlNraUN5WTJuMjczbGdJcTBEUmdUcXAwOFlKSE1XWURoZ0NoOApyMjJIUWVRTktLdk5EakdrZ0p3U1NWRDkrQUc5L2JsYzMvTWJFQ2N2SU8rbFlqYjE1NHdTMjA2K2xxZ1lFeWVZCjYzeDd6RXNnbmthMzFJdEc5YVZuVURHQjlHNnl5b0w1NGpBcit3SURBUUFCbzFBd1RqQWRCZ05WSFE0RUZnUVUKd2c5bjRIN0wzNEQ1VVZIb1h3NldGdVpDK2pRd0h3WURWUjBqQkJnd0ZvQVV3ZzluNEg3TDM0RDVVVkhvWHc2VwpGdVpDK2pRd0RBWURWUjBUQkFVd0F3RUIvekFOQmdrcWhraUc5dzBCQVFzRkFBT0NBUUVBSVFNZGY0c21aR2N2CmNRSm1lbFJyL0dIN2NLWi81NE9oYStzRW1OamR6UTVZZ2Q0ZWJ5QTJKam8yc0pUaGltdlJzREd3c3Jzd2FrMWQKdE1ZSTZPcWFqNXJhWnpJUE5ad0NMMWtiamRjLzc5LzVWbm9hbEkwUEhBZzlzbzVPQnRpSGRaMjdRR1NWVkNxMwpOMDQwWTd4bWl4cEQ5WGhzRmV1ODJyZ3YvTnRTYjFqRUgvK2tFTzNMdDNodU9aQVpWRUdWeHlSQ25jVUExMmdJCjVEMEtYMHBJOEJmV0NNL0czdG5KYzk1bUdXK3RXTWFlcTZZUEhWeXNXWDJBdGFGRWQrKzdIaXVhbWRub3ppQ0QKb1ZjbDExenBxRjdJeThlWGpjOGk0U3ZjVXZVN1dKYlc5OG5DcFJULy8vdk5kY2MxNm9tZlRxWHVicmRuWlUzdApJa2lXNEhBN2F3PT0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo="
+      #        secret: pet-store-ingress-cert
+      oidc:
+        providerUrl: https://accounts.google.com
+        clientId: 1028740252372-6i4iiao3afdihnjudlhi2qpf2qnalppd.apps.googleusercontent.com
+        clientSecret: "@encrypted:AQCSiNN87laZO3f24of1UfN0m9r4Qa50SlR0s8mtcCGdUAe6N+Itx4B+DtfbT2N++Y3+qTfxOmHoNILoq11E4lBEC/QU+XXUd0PIr4AJqjBOAdCZM+gE8KeDoovOKSr+NwgZHd68Vp0qbsYnHq29IXiCXZW0E5OZfSWUmNUMlJ8bSRqvwTgKebrWScN+TEL1BnjPBizlsGDeZMhpPDEAeeJ6lyV9GiKXXBdcwddWfhH5VskBex0bsdu5OI0+IZexjgKVbHMr5Cf/Z5W9IXoU/PRLWtazkIIHuUTkFpubbWp35nzMCoes1DrgHFRk0Jl0jNJTrrnHOcnpU+0IK16HGgNG9L7ktOYnSDMYP3Bb6IM6tZtcfjWUIFP7bnOcVfjHx6lFMeXRIJGRsg=="
+#        clientSecret: R785_Q6e10YkoKVtsSifj6mG
+        redirectUrl: http://pet-store.com/_auth/callback
+        baseUrl: http://pet-store.com/
+        subjectClaim: given_name
+        nonSecurePaths:
+        - "/"
+        - "/app/*"
+      http:
+      - context: /
+        definitions:
+        - path: /*
+          method: GET
+        backend: pet-store-portal
+        global: false
+  servicesTemplates:
+  - metadata:
+      name: pet-store-portal
+    spec:
+      replicas: 1
+      container:
+        image: wso2cellery/samples-pet-store-portal
+        name: portal
+        env:
+        - name: PET_STORE_CELL_URL
+          value: http://pet-backend--gateway-service/controller
+        - name: PORTAL_PORT
+          value: "80"
+        - name: BASE_PATH
+          value: "."
+        ports:
+        - name: http
+          containerPort: 80
+      servicePort: 80
+  - metadata:
+      name: debug
+    spec:
+      replicas: 1
+      container:
+        image: docker.io/mirage20/k8s-debug-tools
+      servicePort: 80
+  stsTemplate:
+    spec:
+      unsecuredPaths: ["/items"]

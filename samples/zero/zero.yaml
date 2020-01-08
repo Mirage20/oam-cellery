@@ -1,0 +1,48 @@
+apiVersion: mesh.cellery.io/v1alpha1
+kind: Cell
+metadata:
+  name: zero-cell
+  annotations:
+    mesh.cellery.io/cell-image-org: cellery-samples
+    mesh.cellery.io/cell-image-name: zero-cell
+    mesh.cellery.io/cell-image-version: 1.0.0
+spec:
+  gatewayTemplate:
+    spec:
+      type: Envoy
+      http:
+      - backend: hello
+        context: /hello
+      - backend: autoscale-zero
+        context: /scale
+  servicesTemplates:
+  - metadata:
+      name: hello
+    spec:
+      autoscaling:
+        policy:
+          minReplicas: 0
+      container:
+        env:
+        - name: TARGET
+          value: 'Cellery'
+        image: gcr.io/knative-samples/helloworld-go
+      protocol: HTTP
+  - metadata:
+      name: autoscale-zero
+    spec:
+      autoscaling:
+        policy:
+          minReplicas: 0
+          concurrency: 5
+      container:
+        # hey -z 30s -c 50 "http://zero-cell--gateway-service/scale?sleep=100&prime=10000&bloat=5"
+        image: gcr.io/knative-samples/autoscale-go:0.1
+      protocol: HTTP
+  - metadata:
+      name: debug
+    spec:
+      replicas: 1
+      container:
+        image: docker.io/mirage20/k8s-debug-tools
+      servicePort: 80

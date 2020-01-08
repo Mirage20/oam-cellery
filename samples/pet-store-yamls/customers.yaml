@@ -1,0 +1,42 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: pet-store-customers
+  namespace: default
+  labels:
+    app: pet-store
+    service: customers
+spec:
+  strategy:
+    type: Recreate
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: pet-store
+        service: customers
+    spec:
+      containers:
+        - image: celleryio/samples-pet-store-customers
+          name: customers
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pet-store-customers
+  namespace: default
+  labels:
+    app: pet-store
+    service: customers
+spec:
+  selector:
+    app: pet-store
+    service: customers
+  ports:
+    - name: http
+      port: 80
+      targetPort: 80

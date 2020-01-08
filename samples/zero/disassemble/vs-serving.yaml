@@ -1,0 +1,99 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"serving.knative.dev/v1alpha1","kind":"Service","metadata":{"annotations":{},"name":"helloworld-go","namespace":"default"},"spec":{"release":{"configuration":{"template":{"metadata":{"name":"helloworld-go-svc"},"spec":{"containers":[{"env":[{"name":"TARGET","value":"Go Sample v1"}],"image":"gcr.io/knative-samples/helloworld-go"}]}}},"revisions":["helloworld-go-svc"],"rolloutPercent":0}}}
+    networking.knative.dev/ingress.class: istio.ingress.networking.knative.dev
+    serving.knative.dev/creator: kubernetes-admin
+    serving.knative.dev/lastModifier: kubernetes-admin
+  generation: 1
+  labels:
+    networking.internal.knative.dev/clusteringress: route-0b1b37b1-88df-11e9-bbcb-0800271129fd
+    serving.knative.dev/route: helloworld-go
+    serving.knative.dev/routeNamespace: default
+  name: route-0b1b37b1-88df-11e9-bbcb-0800271129fd
+  namespace: ""
+  ownerReferences:
+  - apiVersion: networking.internal.knative.dev/v1alpha1
+    blockOwnerDeletion: true
+    controller: true
+    kind: ClusterIngress
+    name: route-0b1b37b1-88df-11e9-bbcb-0800271129fd
+    uid: 0ffde460-88df-11e9-bbcb-0800271129fd
+  resourceVersion: ""
+  selfLink: /apis/networking.istio.io/v1alpha3/namespaces/knative-serving/virtualservices/route-0b1b37b1-88df-11e9-bbcb-0800271129fd
+  uid: ""
+spec:
+  gateways:
+  - knative-ingress-gateway
+  - mesh
+  hosts:
+  - current.helloworld-go.default.example.com
+  - helloworld-go-current.default.example.com
+  - helloworld-go-latest.default.example.com
+  - helloworld-go.default.example.com
+  - helloworld-go.default.svc.cluster.local
+  - latest.helloworld-go.default.example.com
+  http:
+  - appendHeaders:
+      knative-serving-namespace: default
+      knative-serving-revision: helloworld-go-svc
+    match:
+    - authority:
+        regex: ^helloworld-go\.default(?::\d{1,5})?$
+    - authority:
+        regex: ^helloworld-go\.default\.example\.com(?::\d{1,5})?$
+    - authority:
+        regex: ^helloworld-go\.default\.svc(?::\d{1,5})?$
+    - authority:
+        regex: ^helloworld-go\.default\.svc\.cluster\.local(?::\d{1,5})?$
+    retries:
+      attempts: 3
+      perTryTimeout: 10m0s
+    route:
+    - destination:
+        host: helloworld-go-svc.default.svc.cluster.local
+        port:
+          number: 80
+      weight: 100
+    timeout: 10m0s
+    websocketUpgrade: true
+  - appendHeaders:
+      knative-serving-namespace: default
+      knative-serving-revision: helloworld-go-svc
+    match:
+    - authority:
+        regex: ^current\.helloworld-go\.default\.example\.com(?::\d{1,5})?$
+    - authority:
+        regex: ^helloworld-go-current\.default\.example\.com(?::\d{1,5})?$
+    retries:
+      attempts: 3
+      perTryTimeout: 10m0s
+    route:
+    - destination:
+        host: helloworld-go-svc.default.svc.cluster.local
+        port:
+          number: 80
+      weight: 100
+    timeout: 10m0s
+    websocketUpgrade: true
+  - appendHeaders:
+      knative-serving-namespace: default
+      knative-serving-revision: helloworld-go-svc
+    match:
+    - authority:
+        regex: ^helloworld-go-latest\.default\.example\.com(?::\d{1,5})?$
+    - authority:
+        regex: ^latest\.helloworld-go\.default\.example\.com(?::\d{1,5})?$
+    retries:
+      attempts: 3
+      perTryTimeout: 10m0s
+    route:
+    - destination:
+        host: helloworld-go-svc.default.svc.cluster.local
+        port:
+          number: 80
+      weight: 100
+    timeout: 10m0s
+    websocketUpgrade: true

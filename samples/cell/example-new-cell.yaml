@@ -1,0 +1,95 @@
+apiVersion: mesh.cellery.io/v1alpha1
+kind: StandardCell
+metadata:
+  name: my-std-cell
+  annotations:
+    mesh.cellery.io/cell-image-org: myorg
+    mesh.cellery.io/cell-image-name: stock
+    mesh.cellery.io/cell-image-version: 1.0.0
+spec:
+  gatewayTemplate:
+    spec:
+      type: envoy
+      hostName: mydomain.com
+      tlsSecret: faaaaas
+      http:
+      - context: time
+#        definitions:
+#        - path: /
+#          method: GET
+        backend: server-time
+        global: false
+      grpc:
+
+      tcp:
+
+  servicesTemplates:
+  - metadata:
+      name: time-us
+    spec:
+      replicas: 1
+      container:
+        image: docker.io/mirage20/time-us
+        ports:
+        - containerPort: 8080
+      servicePort: 80
+  - metadata:
+      name: time-uk
+    spec:
+      replicas: 1
+      container:
+        image: docker.io/mirage20/time-uk
+        ports:
+        - containerPort: 8080
+      servicePort: 80
+  - metadata:
+      name: server-time
+    spec:
+      replicas: 1
+      container:
+        image: docker.io/mirage20/time
+        ports:
+        - containerPort: 8080
+      servicePort: 80
+  - metadata:
+      name: debug
+    spec:
+      replicas: 1
+      container:
+        image: docker.io/mirage20/k8s-debug-tools
+      servicePort: 80
+  stsTemplate:
+    spec:
+      opa:
+      - key: foo
+        regoPolicy: |
+          package context1
+            default allow_entrance = false
+            default deny_entrance = false
+
+            allow_entrance {
+             re_match(allowed[_].cellImageName, input.authorizationContext.jwtContent.claims.cellImageName)
+             re_match(allowed[_].cellVersion, input.authorizationContext.jwtContent.claims.cellVersion)
+             re_match(allowed[_].cellInstanceName, input.source.cellInstanceName)
+            }
+
+            allow_entrance {
+             count(input.authorizationContext.jwtContent.claims.sub, letters)
+             letters > 0
+            }
+
+            allowed = [{"cellImageName" : "wso2.*", "cellInstanceName" : "myInstance", "cellVersion" : "1.0.0"}, {"cellImageName" : "frontend2", "cellInstanceName" : "myInstance", "cellVersion" : "1.0.0"}]
+      - key: bar
+        regoPolicy: |
+          package context2
+            default allow_entrance = false
+            default deny_entrance = false
+
+            allow_entrance {
+             re_match(allowed[_].cellImageName, input.authorizationContext.jwtContent.claims.cellImageName)
+             re_match(allowed[_].cellVersion, input.authorizationContext.jwtContent.claims.cellVersion)
+             re_match(allowed[_].cellInstanceName, input.source.cellInstanceName)
+            }
+            
+            allowed = [{"cellImageName" : "wso2.*", "cellInstanceName" : "myInstance", "cellVersion" : "1.0.0"}, {"cellImageName" : "frontend2", "cellInstanceName" : "myInstance", "cellVersion" : "1.0.0"}]
+
